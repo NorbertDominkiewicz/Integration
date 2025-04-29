@@ -42,7 +42,7 @@ public class Integral {
         result *= h/3;
         System.out.println("Simpson: " + result);
     }
-    public void numericalMethod(int n,boolean writeOutput){
+    public void quadratureMethod(int n, boolean writeOutput){
         double result = 0;
         double multiplier = (b - a) / 2;
         Scrapper scrapper = new Scrapper(n,writeOutput);
@@ -51,12 +51,12 @@ public class Integral {
             result += element.w.get(i) * mathFunction.apply(multiplier * element.t.get(i) + ((b + a)/2));
         }
         result *= multiplier;
-        System.out.println("Numerical: " + result);
+        System.out.println("Quadrature: " + result);
     }
     public static void main(String[] args) {
-        Integral integral = new Integral(0.5, 1.8,x -> (Math.cos(Math.pow(x, 3) + 0.7))/(1.1 + Math.cos(0.3 * x + 0.1)));
-        integral.trapezoidMethod(4);
-        integral.simpsonMethod(4);
-        integral.numericalMethod(4,false);
+        Integral integral = new Integral(0.5, 1.8,x -> Math.cos(Math.pow(x, 3) + 0.7) / (1.1 + Math.cos(0.3 * x + 0.1)));
+        integral.trapezoidMethod(2);
+        integral.simpsonMethod(6);
+        integral.quadratureMethod(6,false);
     }
 }
